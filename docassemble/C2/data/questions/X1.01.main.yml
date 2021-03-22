@@ -33,19 +33,17 @@ include:
 mandatory: True
 question: Breach of Contract App
 subquestion: |
-  This is the first or 'Welcome' screen that the user
-  sees when they run the app.  This screen should describe
-  what the app does to the user.
-
-  The screen may also need to include a disclaimer, particularly
-  as this app is providing legal advice.
-
-  The screen should contain a click-through agreement indicating
-  the user agrees to the disclaimer and any other terms before
-  proceeding.
-
-  The screen should also give the user the option to exit the
-  app at this point
+  ###Welcome!###
+  This application provides legal advice on what to do if you encounter a breach   of contract.
+  <br>
+  <br>
+  >***Disclaimer:***  
+  **This advice is not to be taken as genuine legal advice and is not a             substitute
+  for you seeking independent legal advice.**
+  <br>
+  <br>
+  
+  If you continue you accept these terms.
 buttons:
   - I agree and wish to continue: continue
   - I do not agree and wish to exit: exit
@@ -65,7 +63,16 @@ code: |
   if MJFsue_reason == 'MJFpromisor':
     # Students will need to put logic in here
     # for the promisor part of the code
-    pass
+    MJFwork_requestedLeft
+    MJFpayment_agreedLeft
+
+    if MJFcertaintyLeft == 'MJFagree_exact' and MJFconsiderationLeft == True and MJFcapacityLeft == True:
+      MJFcontract_exists = True
+    else:
+      MJFcontract_exists = False
+      
+      
+    endpoints['final_screen']
   elif MJFsue_reason == 'MJFpromisee':
     # This is right side of the flowchart.  Off we go!
 
